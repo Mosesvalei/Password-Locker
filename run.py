@@ -232,4 +232,14 @@ def main():
 
 
 
+        elif short_code == 'ex':
+                #exiting from the program
+                print ("Thank you and Goodbye")
+                break
+        else:
+                print("I did not get that. Kindly use the short codes")
 
+
+if __name__ == '__main__':
+
+    main()
