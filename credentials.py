@@ -1,44 +1,84 @@
-class Credential:
+from userdata import UserData
+import unittest,pyperclip
 
-    credential_list=[]
-
+class TestUserData(unittest.TestCase):
     '''
-    class that generates new instances of credentials
+    This is a test class that tests cases for creating and authenticating user data
     '''
 
-    def __init__(self, identity, user_name, password):
+    def setUp(self):
         '''
-        Initializing the variables for the list of credentials
+        Function to set initial variables for testing
         '''
-        self.identity=identity
-        self.user_name=user_name
-        self.password=password
+        self.new_userdata= UserData(1,1,"Valei","adminstrator")
+
+    def tearDown(self):
+        '''
+        tear down function does clean up after each test case
+        '''
+        UserData.users_list = []
+
+    def test_init(self):
+        '''
+        test_init test case to check if objects initialized properly
+        '''
+        self.assertEqual(self.new_userdata.user_identity,1)
+        self.assertEqual(self.new_userdata.data_identity,1)
+        self.assertEqual(self.new_userdata.account_name,"valei")
+        self.assertEqual(self.new_userdata.account_key,"adminminstrator")
+
+    def test_save_account(self):
+        '''
+        test_save_account test case to test if userdata object is saved into users_list
+        '''
+        self.new_userdata.save_account()   #create and save new_cred
+        self.assertEqual(len(UserData.users_list),1)
+
+    def test_password_generator(self):
+        '''
+        test_password_generator test case to test if password has been generated and saved
+        '''
+        password_list = []
+
+        password = self.new_userdata.password_generator(2)
+        password_list.append(password)
+        self.assertEqual(len(password_list),1)
+
+    def test_data_exists(self):
+        '''
+        test_data_exists test case to test if the the function checks that the data exists
+        '''
+
+        self.new_userdata.save_account()
+        test_data = UserData(2,2,"Test","admintest")
+
+        test_data.save_account()
+        data_exists = UserData.data_exists(2)
+        self.assertTrue(data_exists)
+
+    def test_display_data(self):
+        '''
+        test_display_data test case used to test if the function displays the data
+        '''
+        self.new_userdata.save_account()
+        test_data = UserData(2,2,"Test","admintest")
+
+        test_data.save_account()
+        display_data = UserData.display_data(2,2)
+        self.assertEqual(test_data.account_name,display_data.account_name)
+
+    def test_copy_password(self):
+        '''
+        Test to confirm that we are copying the email address from a found contact
+        '''
+
+        self.new_userdata.save_account()
+        UserData.copy_password(1,1)
+
+        self.assertEqual(self.new_userdata.account_key,pyperclip.paste())
 
 
-    def save_credential(self):
-        '''
-        Function to create  and save log in credentials for users
-        '''
-        Credential.credential_list.append(self)
 
 
-    @classmethod
-    def authenticate_credential (cls,name,password):
-        '''
-        Method that checks if user and password are correct
-        '''
-        for cred in cls.credential_list:
-            if cred.user_name == name and cred.password == password:
-                return cred
-        return 0
-
-    def cred_data_exists(cls,number):
-        '''
-        Checks if data exists in the profile
-        '''
-        for data in cls.users_list:
-            if data.data_identity == number:
-                return True
-        return False
-
-    #End of credential class
+if __name__ == "__main__":
+    unittest.main()
