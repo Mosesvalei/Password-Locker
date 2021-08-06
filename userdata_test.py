@@ -72,3 +72,13 @@ class TestUserData(unittest.TestCase):
         Test to confirm that we are copying the email address from a found contact
         '''
 
+        self.new_userdata.save_account()
+        UserData.copy_password(1,1)
+
+        self.assertEqual(self.new_userdata.account_key,pyperclip.paste())
+
+
+
+
+if __name__ == "__main__":
+    unittest.main()
