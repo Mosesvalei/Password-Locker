@@ -9,9 +9,9 @@ Password Locker is an application that helps users generate and store passwords 
 ## Setup/Installation Requirements
 ### Requirements
 * Text editor
+* Browser(google chrome)
 * Github
 * Git
-* Browser(google chrome)
   
 
 ### Setup
@@ -41,6 +41,8 @@ https://github.com/Mosesvalei/Password-Locker.git
 
 ## Technologies Used
   * Python3.8
+  * Pyperclip
+  * Pip
 
 ## Support and contact details
 moses.mwanzia@student.moringaschool.com
