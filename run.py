@@ -74,4 +74,21 @@ def copy_password(number,count):
     '''
     UserData.copy_password(number,count)
 
+def main():
+    '''
+    Main function for the program
+    '''
+    user_id = 0  # assigned to identity variable
+    user_entries = []  # variable to hold the identity of user
+    print("\n")
+    print("Hello, welcome to password locker!")
+    print("-"*35)
+    print("\n")
 
+    print("Please enter your name")
+    user_name= input()
+
+    print("\n")
+    print(f"Hello {user_name}. what would you like to do?")
+
+    
