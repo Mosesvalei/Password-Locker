@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from credentials import Credential
+from credential import Credential
 from userdata import UserData
 import pyperclip
 import string,random,time
